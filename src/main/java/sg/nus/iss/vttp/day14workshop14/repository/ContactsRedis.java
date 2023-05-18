@@ -23,5 +23,10 @@ public class ContactsRedis {
         template.opsForHash().put(CONTACT_LIST+"_HASH", contact.getId(), contact);
         model.addAttribute("contact", contact);
     }
+
+    public Contact getContactById(String contactId) {
+        Contact contact = (Contact) template.opsForHash().get(CONTACT_LIST+"_HASH", contactId);
+        return contact;
+    }
     
 }
