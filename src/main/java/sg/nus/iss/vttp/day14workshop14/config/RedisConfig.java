@@ -12,8 +12,6 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import redis.clients.jedis.JedisSocketFactory;
-
 @Configuration
 public class RedisConfig {
 

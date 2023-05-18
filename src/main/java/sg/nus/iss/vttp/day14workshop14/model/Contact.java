@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Random;
@@ -14,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 
-public class Contact {
+public class Contact implements Serializable{
 
     @NotNull(message =  "Name can not be empty")
     @Size(min= 3, max = 64, message = "Name should be between 3 to 15 characters")
