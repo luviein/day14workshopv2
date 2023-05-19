@@ -11,8 +11,8 @@
     <tr th:each="contact: ${contacts}">
       <td>
         <a
-          data-th-href="@{'/contact/' + ${contact}}"
-          data-th-text="${contact}"
+          data-th-href="@{'/contact/' + ${contact.id}}"
+          data-th-text="${contact.id}"
         ></a
         ><br />
       </td>
