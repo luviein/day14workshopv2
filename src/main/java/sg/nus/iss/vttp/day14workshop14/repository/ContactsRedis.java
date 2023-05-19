@@ -1,5 +1,7 @@
 package sg.nus.iss.vttp.day14workshop14.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,4 +26,13 @@ public class ContactsRedis {
         model.addAttribute("contact", contact);
     }
     
+    public Contact getContactById(String contactId) {
+        Contact contact = (Contact) template.opsForHash().get(CONTACT_LIST+"_HASH", contactId);
+        return contact;
+    }
+
+    public List<Contact> getAllContacts(Model model) {
+     return template.opsForHash().values(CONTACT_LIST+"_HASH").stream().filter(Contact.class :: isInstance).map(Contact.class :: cast).collect(Collectors.toList());
+     }
+ 
 }
