@@ -1,18 +1,21 @@
 package sg.nus.iss.vttp.day14workshop14.controller;
 
 import jakarta.validation.Valid;
-import sg.nus.iss.vttp.day14workshop14.model.Contact;
-import sg.nus.iss.vttp.day14workshop14.repository.ContactsRedis;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sg.nus.iss.vttp.day14workshop14.model.Contact;
+import sg.nus.iss.vttp.day14workshop14.repository.ContactsRedis;
+
+
 
 
 @Controller
@@ -31,7 +34,7 @@ public String showAddressBook(Model model){
 
 ///to save the contact information
 @PostMapping( consumes ="application/x-www-form-urlencoded", path=  "/contact")
-public String saveAddressBook(@Valid Contact contact, BindingResult bindingResult,Model model){ 
+public String saveAddressBook(@ModelAttribute @Valid Contact contact, BindingResult bindingResult,Model model){ 
     if(bindingResult.hasErrors()){
        return "addressBook";  
     }
@@ -53,11 +56,12 @@ public String saveAddressBook(@Valid Contact contact, BindingResult bindingResul
     }
 
     
-/* 
+
     @GetMapping(path = "/list")
     public String getAllContacts(Model model) {
-        service.getAllContactInURI(model, dataDir);
-        return "contacts";
+       List<Contact> contacts = repository.getAllContacts(model);
+       model.addAttribute("contacts", contacts);
+       return "contacts";
     }
-   */ 
+   
 }
