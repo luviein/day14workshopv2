@@ -59,7 +59,7 @@ public String saveAddressBook(@ModelAttribute @Valid Contact contact, BindingRes
 
     @GetMapping(path = "/list")
     public String getAllContacts(Model model) {
-       List<Contact> contacts = repository.getAllContacts(model);
+       List<Contact> contacts = repository.getAllContacts();
        model.addAttribute("contacts", contacts);
        return "contacts";
     }
