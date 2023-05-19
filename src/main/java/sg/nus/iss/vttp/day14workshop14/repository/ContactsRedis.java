@@ -20,7 +20,7 @@ public class ContactsRedis {
     
     public void saveContact(Contact contact, Model model) {
         //to insert record in list
-        template.opsForList().leftPush(CONTACT_LIST, contact.getId());
+        //template.opsForList().leftPush(CONTACT_LIST, contact.getId());
 
         //to insert record in hash
         template.opsForHash().put(CONTACT_LIST+"_HASH", contact.getId(), contact);
